@@ -5,7 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     pull_policy: build
-    image: python:3.11
     container_name: scraping-app
     volumes:
       - ./:/app
