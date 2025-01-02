@@ -8,8 +8,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o restante do código para o contêiner
+# Copia o restante dos arquivos do projeto para o contêiner
 COPY . .
 
-# Comando para iniciar o servidor Django
+# Comando para iniciar o script principal
 CMD ["python", "main.py"]
