@@ -1,11 +1,10 @@
 version: "3.8"
 services:
-  app:
+  botgate:
     build:
       context: .
       dockerfile: Dockerfile
     pull_policy: build
-    container_name: scraping-app
     volumes:
       - ./:/app
     restart: always
