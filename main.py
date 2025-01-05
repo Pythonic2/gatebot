@@ -96,4 +96,4 @@ if __name__ == "__main__":
     while True:
         main()
         print("Aguardando 5 minutos...")
-        sleep(300)
+        sleep(3600)
