@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import time
+from time import time, sleep
 
 
 # Configurar o WebDriver (apenas uma vez)
@@ -73,9 +73,14 @@ def main():
     start_time = time()
 
     # Usar ProcessPoolExecutor para multiprocessing
-    with ProcessPoolExecutor(max_workers=MAX_INSTANCES) as executor:
-        # Mapear URLs para scraping
-        results = list(executor.map(scrape_page, range(len(urls)), urls))
+    try:
+        with ProcessPoolExecutor(max_workers=MAX_INSTANCES) as executor:
+            # Mapear URLs para scraping
+            results = list(executor.map(scrape_page, range(len(urls)), urls))
+    except KeyboardInterrupt:
+        print("Execução interrompida manualmente.")
+    finally:
+        executor.shutdown(wait=True)  # Garante que todos os processos sejam encerrados
 
     end_time = time()
 
@@ -88,4 +93,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        try:
+            main()
+        except Exception as e:
+            print(f"Erro no loop principal: {e}")
+        print("Aguardando 1 hora...")
+        sleep(3600)
