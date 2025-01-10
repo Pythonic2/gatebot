@@ -18,7 +18,7 @@ def create_driver():
     chrome_options.set_capability("acceptInsecureCerts", True)
 
     driver = webdriver.Remote(
-        command_executor='http://192.168.0.2:4444',
+        command_executor='http://192.168.0.5:4444',
         options=chrome_options
     )
     return driver
