@@ -111,7 +111,7 @@ def create_driver():
     chrome_options.add_argument("--no-sandbox")
 
     driver = webdriver.Remote(
-        command_executor="http://10.24.208.84:4444/wd/hub",  # URL do Selenoid
+        command_executor="http://10.24.208.84:4444",  # URL do Selenoid
         options=chrome_options
     )
     return driver
